@@ -23,7 +23,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.085195302959999997" green="0.68366473910000003" blue="0.96416318420000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Dar-je-SWJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="256" id="6pm-Eq-3YI"/>
+                            <constraint firstItem="Dar-je-SWJ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="196" id="4kF-dr-FXa"/>
                             <constraint firstItem="Dar-je-SWJ" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="ruq-W4-MTV"/>
                         </constraints>
                     </view>
