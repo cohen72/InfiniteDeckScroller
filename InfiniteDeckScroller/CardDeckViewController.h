@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    CardDeckSlideDirectionTop = 0,
+    CardDeckSlideDirectionUp = 0,
     CardDeckSlideDirectionLeft,
-	CardDeckSlideDirectionBottom,
+	CardDeckSlideDirectionDown,
     CardDeckSlideDirectionRight
 } CardDeckSlideDirection;
 
@@ -42,7 +42,6 @@ typedef enum {
 
 @required
 -(UIView *)	cardDeck:(CardDeckViewController *)cardDeck cardViewForIndexPath:(NSIndexPath*)cardIndexPath;
--(NSInteger)numberOfSectionsInDeck:(CardDeckViewController *)cardDeck;
--(NSInteger)cardDeck:(CardDeckViewController *)cardDeck numberOfCardsInSection:(NSInteger)section;
+-(NSInteger)numberOfCardsInDeck:(CardDeckViewController *)cardDeck;
 
 @end

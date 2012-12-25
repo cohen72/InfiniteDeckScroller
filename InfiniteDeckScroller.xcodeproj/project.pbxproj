@@ -91,9 +91,9 @@
 				73B8378416889BD3002EDD52 /* MainStoryboard.storyboard */,
 				73B8378716889BD3002EDD52 /* ViewController.h */,
 				73B8378816889BD3002EDD52 /* ViewController.m */,
-				73B8377316889BD3002EDD52 /* Supporting Files */,
 				73B837971689A275002EDD52 /* CardDeckViewController.h */,
 				73B837981689A276002EDD52 /* CardDeckViewController.m */,
+				73B8377316889BD3002EDD52 /* Supporting Files */,
 			);
 			path = InfiniteDeckScroller;
 			sourceTree = "<group>";

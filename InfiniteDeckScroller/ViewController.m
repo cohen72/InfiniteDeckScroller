@@ -23,7 +23,6 @@
 {
     [super viewDidLoad];
 
-	
 	self.cardsViewsArray = [NSArray arrayWithObjects:[self labelWithText:@"0" withBgColor:[UIColor redColor]],
 							[self labelWithText:@"1" withBgColor:[UIColor orangeColor]],
 							[self labelWithText:@"2" withBgColor:[UIColor yellowColor]],
@@ -41,24 +40,27 @@
 	
 	[self.view addSubview:self.cardDeck.view];
 	
-	
-	
-	[self.cardDeck reloadCardDeck];
+//	[self.cardDeck reloadCardDeck];
 	
 }
 
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+}
+
+#pragma mark Card Deck Datasource
 
 -(UIView *)cardDeck:(CardDeckViewController *)cardDeck cardViewForIndexPath:(NSIndexPath *)cardIndexPath{
-	return [self.cardsViewsArray objectAtIndex:cardIndexPath.row];
+	UILabel *lbl = [self.cardsViewsArray objectAtIndex:cardIndexPath.row];
+	return lbl;
 }
 
--(NSInteger)cardDeck:(CardDeckViewController *)cardDeck numberOfCardsInSection:(NSInteger)section{
+-(NSInteger)numberOfCardsInDeck:(CardDeckViewController *)cardDeck{
 	return [self.cardsViewsArray count];
 }
 
--(NSInteger)numberOfSectionsInDeck:(CardDeckViewController *)cardDeck{
-	return 1;
-}
+
+#pragma mark Card Deck Delegate
 
 -(void)cardDeck:(CardDeckViewController *)cardDeck didSlideCardAtIndexPath:(NSIndexPath *)indexPath direction:(CardDeckSlideDirection)slideDirection{
 	
@@ -66,6 +68,9 @@
 
 
 - (UILabel*)labelWithText:(NSString*)text withBgColor:(UIColor*)color{
+//	int t = [text intValue];
+//	CGRect r = CGRectMake(20 + t * 1, 100, 200, 200);
+//	UILabel *lbl = [[UILabel alloc] initWithFrame:r];
 	UILabel *lbl = [[UILabel alloc] initWithFrame:self.view.bounds];
 	lbl.textAlignment = NSTextAlignmentCenter;
 	lbl.backgroundColor = color;
