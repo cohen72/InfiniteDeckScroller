@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    CardDeckSlideDirectionTop = 0,
+    CardDeckSlideDirectionLeft,
+	CardDeckSlideDirectionBottom,
+    CardDeckSlideDirectionRight
+} CardDeckSlideDirection;
+
+
 @protocol CardDeckDelegate;
 @protocol CardDeckDataSource;
 
@@ -15,16 +23,26 @@
 
 @property (nonatomic, strong) id <CardDeckDelegate, CardDeckDataSource> delegate;
 
+- (void)reloadCardDeck;
+
 @end
+
+#pragma mark CardDeckDelegate
 
 @protocol CardDeckDelegate <NSObject>
 
+-(void)		cardDeck:(CardDeckViewController *)cardDeck didSlideCardAtIndexPath:(NSIndexPath *)indexPath direction:(CardDeckSlideDirection)slideDirection;
+
 @end
+
+
+#pragma mark CardDeckDatasource
 
 @protocol CardDeckDataSource <NSObject>
 
--(UIView *)		cardDeck:(CardDeckViewController *)cardDeck cardViewForIndex:(int)cardIndex;
--(NSInteger)	numberOfCardsInDeck:(CardDeckViewController *)cardDeck;
-
+@required
+-(UIView *)	cardDeck:(CardDeckViewController *)cardDeck cardViewForIndexPath:(NSIndexPath*)cardIndexPath;
+-(NSInteger)numberOfSectionsInDeck:(CardDeckViewController *)cardDeck;
+-(NSInteger)cardDeck:(CardDeckViewController *)cardDeck numberOfCardsInSection:(NSInteger)section;
 
 @end

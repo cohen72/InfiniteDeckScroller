@@ -32,18 +32,29 @@
 {
     [super viewDidLoad];
 	
+	[self reloadCardDeck];
+	
+}
+
+// todo - reload scrollview with views
+- (void)reloadCardDeck{
+	
+	
+	for (UIView *view in self.view.subviews) {
+		[view removeFromSuperview];
+	}
+	
 	UIScrollView *scroll1 = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	UIScrollView *scroll2 = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	UIScrollView *scroll3 = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	UIScrollView *scroll4 = [[UIScrollView alloc] initWithFrame:self.view.bounds];
 	
-		
 	scroll1.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height * 1);
 	scroll1.tag = BOTTOM;
 	scroll1.pagingEnabled = YES;
 	scroll1.bounces = NO;
 	scroll1.delegate = self;
-	[scroll1 addSubview:[self.delegate cardDeck:self cardViewForIndex:2]];
+	[scroll1 addSubview:[self.delegate cardDeck:self cardViewForIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]]];
 	[scroll1 setContentOffset:CGPointMake(0, 0)];
 	
 	scroll2.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height * 1);
@@ -51,7 +62,7 @@
 	scroll2.pagingEnabled = YES;
 	scroll2.bounces = NO;
 	scroll2.delegate = self;
-	[scroll2 addSubview:[self.delegate cardDeck:self cardViewForIndex:1]];
+	[scroll2 addSubview:[self.delegate cardDeck:self cardViewForIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]];
 	[scroll2 setContentOffset:CGPointMake(0, 0)];
 	
 	scroll3.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height * 1);
@@ -59,7 +70,7 @@
 	scroll3.pagingEnabled = YES;
 	scroll3.bounces = NO;
 	scroll3.delegate = self;
-	[scroll3 addSubview:[self.delegate cardDeck:self cardViewForIndex:0]];
+	[scroll3 addSubview:[self.delegate cardDeck:self cardViewForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]];
 	[scroll3 setContentOffset:CGPointMake(320, 0)];
 	
 	scroll4.contentSize = CGSizeMake(self.view.frame.size.width * 1, self.view.frame.size.height * 2);
@@ -75,9 +86,8 @@
 	[self.view addSubview:scroll4];
 	
 	self.currentCardIndex = 1;
+	
 }
-
-// todo - reload scrollview with views
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
@@ -85,11 +95,15 @@
 
 	UIScrollView *newMiddleScrollView, *newBottomScrollView, *newTopScrollView;
 	
-	int lastindex = [self.delegate numberOfCardsInDeck:self] - 1;
+	int lastindex = [self.delegate cardDeck:self numberOfCardsInSection:0] - 1;
+	
+	CardDeckSlideDirection slideDirection;
 	
 	// swipe right
 	
 	if (scrollView.contentOffset.x == 320 && scrollView.tag == MIDDLE) {
+		
+		slideDirection = CardDeckSlideDirectionRight;
 		
 		newMiddleScrollView = (UIScrollView*)[self.view viewWithTag:BOTTOM];
 		newTopScrollView = (UIScrollView*)[self.view viewWithTag:MIDDLE];
@@ -102,6 +116,8 @@
 	// swipe left
 	
 	else if (scrollView.contentOffset.x == 0 && scrollView.tag == TOP) {
+		
+		slideDirection = CardDeckSlideDirectionLeft;
 		
 		newMiddleScrollView = (UIScrollView*)[self.view viewWithTag:TOP];
 		newTopScrollView = (UIScrollView*)[self.view viewWithTag:BOTTOM];
@@ -122,12 +138,12 @@
 	if (nextCardIndex == lastindex + 1) nextCardIndex = 0;
 	NSLog(@"prevIndex: %d, self.currentIndex: %d, nextIndex: %d ",prevCardIndex, self.currentCardIndex, nextCardIndex);
 	
-//	[newBottomScrollView addSubview:[self.cardsViewsArray objectAtIndex:nextCardIndex]];
-//	[newTopScrollView addSubview:[self.cardsViewsArray objectAtIndex:prevCardIndex]];
+	NSIndexPath *indexPathNext = [NSIndexPath indexPathForRow:nextCardIndex inSection:0];
+	NSIndexPath *indexPathPrev = [NSIndexPath indexPathForRow:prevCardIndex inSection:0];
 	
-	[newBottomScrollView addSubview:[self.delegate cardDeck:self cardViewForIndex:nextCardIndex]];
-	[newTopScrollView addSubview:[self.delegate cardDeck:self cardViewForIndex:prevCardIndex]];
-	
+	[newBottomScrollView addSubview:[self.delegate cardDeck:self cardViewForIndexPath:indexPathNext]];
+	[newTopScrollView addSubview:[self.delegate cardDeck:self cardViewForIndexPath:indexPathPrev]];
+
 	newMiddleScrollView.tag = MIDDLE;
 	newBottomScrollView.tag = BOTTOM;
 	newTopScrollView.tag = TOP;
@@ -140,6 +156,8 @@
 	[verticalScrollView_sub addSubview:newBottomScrollView];
 	[newBottomScrollView addSubview:newMiddleScrollView];
 	[newMiddleScrollView addSubview:newTopScrollView];
+	
+	[self.delegate cardDeck:self didSlideCardAtIndexPath:[NSIndexPath indexPathForRow:self.currentCardIndex inSection:0] direction:slideDirection];
 	
 }
 
