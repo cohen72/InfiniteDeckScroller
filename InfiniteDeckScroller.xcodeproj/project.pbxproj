@@ -18,6 +18,7 @@
 		73B8378316889BD3002EDD52 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73B8378216889BD3002EDD52 /* Default-568h@2x.png */; };
 		73B8378616889BD3002EDD52 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73B8378416889BD3002EDD52 /* MainStoryboard.storyboard */; };
 		73B8378916889BD3002EDD52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B8378816889BD3002EDD52 /* ViewController.m */; };
+		73B837991689A276002EDD52 /* CardDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B837981689A276002EDD52 /* CardDeckViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		73B8378516889BD3002EDD52 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		73B8378716889BD3002EDD52 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		73B8378816889BD3002EDD52 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		73B837971689A275002EDD52 /* CardDeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDeckViewController.h; sourceTree = "<group>"; };
+		73B837981689A276002EDD52 /* CardDeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDeckViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				73B8378716889BD3002EDD52 /* ViewController.h */,
 				73B8378816889BD3002EDD52 /* ViewController.m */,
 				73B8377316889BD3002EDD52 /* Supporting Files */,
+				73B837971689A275002EDD52 /* CardDeckViewController.h */,
+				73B837981689A276002EDD52 /* CardDeckViewController.m */,
 			);
 			path = InfiniteDeckScroller;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				73B8377916889BD3002EDD52 /* main.m in Sources */,
 				73B8377D16889BD3002EDD52 /* AppDelegate.m in Sources */,
 				73B8378916889BD3002EDD52 /* ViewController.m in Sources */,
+				73B837991689A276002EDD52 /* CardDeckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
