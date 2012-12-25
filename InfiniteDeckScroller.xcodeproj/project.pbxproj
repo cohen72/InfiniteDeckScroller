@@ -298,6 +298,7 @@
 				73B8378E16889BD3002EDD52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
